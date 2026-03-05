@@ -1,6 +1,7 @@
 package com.mistri.labyrinthGame.model.classi;
 
 import com.mistri.labyrinthGame.model.*;
+import com.mistri.labyrinthGame.model.abilita.Abilita;
 import com.mistri.labyrinthGame.model.abilita.Attaccante;
 import com.mistri.labyrinthGame.model.abilita.Difensore;
 
@@ -8,6 +9,7 @@ public class Guerriero extends Personaggio implements Attaccante, Difensore {
 
     public Guerriero(String nome, String emoji){
         super(nome, emoji, new Stats(20,18,5,5,12));
+        aggiungiAbilita(new Abilita("Colpo Possente", Abilita.Tipo.FISICO, 11, 0, "Attacco fisico pesante"));
     }
 
     public void attacca(Personaggio b){

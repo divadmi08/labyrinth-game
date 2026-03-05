@@ -1,6 +1,7 @@
 package com.mistri.labyrinthGame.model.classi;
 
 import com.mistri.labyrinthGame.model.*;
+import com.mistri.labyrinthGame.model.abilita.Abilita;
 import com.mistri.labyrinthGame.model.abilita.Attaccante;
 import com.mistri.labyrinthGame.model.abilita.UsatoreMagia;
 
@@ -8,6 +9,7 @@ public class Paladino extends Personaggio implements Attaccante, UsatoreMagia {
 
     public Paladino(String nome, String emoji){
         super(nome, emoji, new Stats(15, 18, 15, 10, 10));
+        aggiungiAbilita(new Abilita("Giudizio Sacro", Abilita.Tipo.MAGIA, 10, 4, "Punizione divina"));
     }
 
     public void attacca(Personaggio b){

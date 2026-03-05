@@ -6,7 +6,6 @@ import com.googlecode.lanterna.input.KeyType;
 import com.mistri.labyrinthGame.model.Nemico;
 import com.mistri.labyrinthGame.model.Personaggio;
 import com.mistri.labyrinthGame.model.abilita.Abilita;
-import com.mistri.labyrinthGame.model.abilita.Attaccante;
 import com.mistri.labyrinthGame.model.abilita.UsatoreMagia;
 
 import java.util.List;
@@ -61,6 +60,7 @@ public class CombatEngine {
 
             // ── Input player ─────────────────────────────────────────────────
             KeyStroke key = screen.readInput();
+            if (key == null) continue;
             if (key.getKeyType() == KeyType.Escape) return false;
 
             Character ch = key.getCharacter();
@@ -77,7 +77,7 @@ public class CombatEngine {
                 }
                 case '2' -> {
                     // Magia (solo se il player è UsatoreMagia)
-                    if (player instanceof UsatoreMagia um) {
+                    if (player instanceof UsatoreMagia) {
                         dannoPlayer = calcolaDannoMagia(player);
                         if (player.getStats().getMana() >= 5) {
                             nemico.subisciDanno(dannoPlayer);

@@ -1,6 +1,7 @@
 package com.mistri.labyrinthGame.model.classi;
 
 import com.mistri.labyrinthGame.model.*;
+import com.mistri.labyrinthGame.model.abilita.Abilita;
 import com.mistri.labyrinthGame.model.abilita.Difensore;
 import com.mistri.labyrinthGame.model.abilita.UsatoreMagia;
 
@@ -9,6 +10,7 @@ public class Mago extends Personaggio implements UsatoreMagia, Difensore {
 
     public Mago(String nome, String emoji){
         super(nome, emoji, new Stats(5,5,20,18,8));
+        aggiungiAbilita(new Abilita("Sfera Arcana", Abilita.Tipo.MAGIA, 12, 6, "Danno magico elevato"));
     }
 
     public void lanciaIncantesimo(Personaggio b){

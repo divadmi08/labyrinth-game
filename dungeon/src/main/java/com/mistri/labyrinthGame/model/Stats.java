@@ -12,11 +12,11 @@ public class Stats {
     private static final int MAX = 100;
 
     public Stats(int forza, int vita, int mana, int intelligenza, int stamina) {
-        this.forza = forza;
-        this.vita = vita;
-        this.mana = mana;
-        this.intelligenza = intelligenza;
-        this.stamina = stamina;
+        this.forza = limita(forza);
+        this.vita = limita(vita);
+        this.mana = limita(mana);
+        this.intelligenza = limita(intelligenza);
+        this.stamina = limita(stamina);
     }
 
     private int limita(int v){

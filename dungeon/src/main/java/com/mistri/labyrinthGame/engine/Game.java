@@ -19,12 +19,14 @@ public class Game {
     // Nemico di test in posizione fissa (colonna 5, riga 1 della mappa)
     private Nemico nemico = new Nemico("Goblin", "G", 20, 5, 50);
     private boolean nemicoVivo = true;
+    private boolean screenStarted = false;
 
     public void start(Personaggio player) throws Exception {
 
         Terminal terminal = new DefaultTerminalFactory().createTerminal();
         Screen screen    = new com.googlecode.lanterna.screen.TerminalScreen(terminal);
         screen.startScreen();
+        screenStarted = true;
         screen.setCursorPosition(null);
 
         // ── Collega il level-up al terminale Lanterna ────────────────────────
@@ -73,8 +75,10 @@ public class Game {
                 screen.refresh();
 
                 KeyStroke key = screen.readInput();
+                if (key == null) {
+                    continue;
+                }
                 if (key.getKeyType() == KeyType.Escape) {
-                    screen.stopScreen();
                     return;
                 }
 
@@ -99,14 +103,16 @@ public class Game {
                             nemicoVivo = false;
                         }
                         if (!player.getStats().isVivo()) {
-                            screen.stopScreen();
                             return;
                         }
                     }
                 }
             }
         } finally {
-            screen.stopScreen();
+            if (screenStarted) {
+                screen.stopScreen();
+                screenStarted = false;
+            }
         }
     }
 
@@ -126,6 +132,9 @@ public class Game {
             screen.refresh();
 
             KeyStroke key = screen.readInput();
+            if (key == null) {
+                continue;
+            }
             Character ch  = key.getCharacter();
             if (ch == null) continue;
 
